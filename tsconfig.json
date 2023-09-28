@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "ES2022",
+		"module": "Node16",
 		"lib": ["ES2022", "DOM", "DOM.Iterable"],
 		"composite": true,
 		"disableSizeLimit": true,
@@ -26,6 +27,7 @@
 		"jsx": "preserve",
 		"emitDeclarationOnly": true,
 		"experimentalDecorators": true,
+		"moduleResolution": "node16",
 		"resolveJsonModule": true,
 		"paths": {
 			"glob:*": ["./<dirname>/*/__virtual__:matches.ts"],

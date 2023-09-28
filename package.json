@@ -1,6 +1,7 @@
 {
 	"name": "@/monorepo",
 	"devDependencies": {
+		"@types/node": "^20.7.1",
 		"typescript": "^5.2.2"
 	},
 	"pnpm": {

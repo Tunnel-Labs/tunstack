@@ -18,7 +18,7 @@ export default definePatch({
       const bundle = await rollup({
         input,
         plugins: [
-          (esbuild.default ?? esbuild)({
+          esbuild({
             loaders: {
               ".ts": "ts",
             },

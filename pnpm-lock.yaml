@@ -13,6 +13,9 @@ importers:
 
   .:
     devDependencies:
+      '@types/node':
+        specifier: ^20.7.1
+        version: 20.7.1
       typescript:
         specifier: ^5.2.2
         version: 5.2.2(patch_hash=lucqm4vvddfhrterqprqtjllyi)
@@ -34,6 +37,9 @@ importers:
       estree-walker:
         specifier: ^3.0.3
         version: 3.0.3
+      map-obj:
+        specifier: ^5.0.2
+        version: 5.0.2
       outdent:
         specifier: ^0.8.0
         version: 0.8.0
@@ -335,6 +341,10 @@ packages:
   /@types/estree@1.0.2:
     resolution: {integrity: sha512-VeiPZ9MMwXjO32/Xu7+OwflfmeoRwkE/qzndw42gGtgJwZopBnzy2gD//NN1+go1mADzkDcqf/KnFRSjTJ8xJA==}
     dev: false
+
+  /@types/node@20.7.1:
+    resolution: {integrity: sha512-LT+OIXpp2kj4E2S/p91BMe+VgGX2+lfO+XTpfXhh+bCk2LkQtHZSub8ewFBMGP5ClysPjTDFa4sMI8Q3n4T0wg==}
+    dev: true
 
   /@types/resolve@1.20.2:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -650,6 +660,11 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
+    dev: false
+
+  /map-obj@5.0.2:
+    resolution: {integrity: sha512-K6K2NgKnTXimT3779/4KxSvobxOtMmx1LBZ3NwRxT/MDIR3Br/fQ4Q+WCX5QxjyUR8zg5+RV9Tbf2c5pAWTD2A==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: false
 
   /merge2@1.4.1:
