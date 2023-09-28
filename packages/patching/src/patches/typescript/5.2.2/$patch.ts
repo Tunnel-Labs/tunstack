@@ -122,7 +122,7 @@ export default definePatch({
           .join("")
           .replace(
             '"use strict";',
-            `var getPackagePath = ((module) => {${createGetPackagePathCode};return module.exports()})({})`
+            () => `"use strict";var getPackagePath = ((module) => {${createGetPackagePathCode};return module.exports()})({})`
           )
           // Needed to prevent the error "File '/Users/leondreamed/projects/Tunnel-Labs/Tunnel/devops/aws/src/cdk/stacks/*.ts/__virtual__:matches.ts' is not listed within the file list of project '/Users/leondreamed/projects/Tunnel-Labs/Tunnel/tsconfig.json'. Projects must list all files or use an 'include' pattern."
           .replace(
