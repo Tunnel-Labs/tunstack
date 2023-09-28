@@ -1,5 +1,5 @@
 {
-  "name": "@/patching",
+  "name": "@-/patching",
 	"type": "module",
   "dependencies": {
     "pathe": "^1.1.1",
