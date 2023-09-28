@@ -1,0 +1,8 @@
+{
+  "name": "@/patching",
+  "dependencies": {
+    "pathe": "^1.1.1",
+    "replace-in-file": "^7.0.1",
+    "tmp-promise": "^3.0.3"
+  }
+}
