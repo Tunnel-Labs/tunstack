@@ -6,22 +6,63 @@ const { globSync } = require('glob');
 const trimExtension = require('trim-extension');
 // @ts-expect-error: works
 const { getMonorepoDirpath } = require('get-monorepo-root');
+const {
+	getMonorepoPackagesDirpathsSync
+	// @ts-expect-error: works
+} = require('@ts-monorepo/get-monorepo-packages');
 
 module.exports = function createReadFileWrapper() {
-	const monorepoDirpath = getMonorepoDirpath(__dirname)
+	const monorepoDirpath = getMonorepoDirpath(__dirname);
 	if (monorepoDirpath === undefined) {
 		throw new Error('Could not find monorepo directory');
 	}
+
+	const monorepoPackagesDirpaths = getMonorepoPackagesDirpathsSync({
+		monorepoDirpath
+	});
 
 	/** @param {string} filepath */
 	const pathToIdentifier = (filepath) =>
 		`__${filepath.replaceAll(/[^\w$]/g, '_')}`;
 
+	// @ts-expect-error: This function is defined in the TypeScript patch file
+	// eslint-disable-next-line no-undef -- This function is defined in the TypeScript patch file
+	const _readFile = readFile;
+
 	/**
 		@param {string} filepath
 	*/
 	return function (filepath) {
-		if (path.basename(filepath).startsWith('__virtual__:')) {
+		if (/tsconfig\..*\.json$/.test(path.basename(filepath))) {
+			const tsconfig = JSON.parse(_readFile(filepath));
+			if (tsconfig.tsconfigInclude !== undefined) {
+				tsconfig.include ??= [];
+				const tsconfigIncludes = [tsconfig.tsconfigInclude].flat();
+
+				for (const monorepoPackageDirpath of monorepoPackagesDirpaths) {
+					const monorepoPackageJson = JSON.parse(
+						_readFile(path.join(monorepoPackageDirpath, 'package.json'))
+					);
+
+					if (
+						tsconfigIncludes.some(
+							(tsconfigInclude) =>
+								(tsconfigInclude === 'default' &&
+									monorepoPackageJson.tsconfig === undefined) ||
+								monorepoPackageJson.tsconfig === tsconfigInclude
+						)
+					) {
+						tsconfig.include.push(
+							path.relative(monorepoDirpath, monorepoPackageDirpath) + '/**/*'
+						);
+					}
+				}
+
+				delete tsconfig.tsconfigInclude;
+			}
+
+			return JSON.stringify(tsconfig, null, '\t');
+		} else if (path.basename(filepath).startsWith('__virtual__:')) {
 			const virtualFileType = /** @type {'matches' | 'files' | 'filepaths'} */ (
 				(trimExtension.default ?? trimExtension)(
 					path.basename(filepath).replace('__virtual__:', '')
@@ -104,9 +145,7 @@ module.exports = function createReadFileWrapper() {
 			virtualFileContentLines.push('export {};');
 			return virtualFileContentLines.join('\n');
 		} else {
-			// @ts-expect-error: This function is defined in the TypeScript patch file
-			// eslint-disable-next-line no-undef -- This function is defined in the TypeScript patch file
-			return readFile(filepath);
+			return _readFile(filepath);
 		}
 	};
 };

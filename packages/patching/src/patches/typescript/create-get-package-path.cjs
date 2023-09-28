@@ -1,6 +1,8 @@
 // @ts-check
 
+// @ts-expect-error: works
 const { getMonorepoDirpath } = require('get-monorepo-root');
+// @ts-expect-error: works
 const { createTildeImportExpander } = require('tilde-imports');
 
 module.exports = function createGetPackagePath() {
