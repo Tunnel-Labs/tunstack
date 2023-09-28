@@ -4,9 +4,18 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  typescript@5.2.2:
+    hash: 6ijiephe5hsfj6offzfxf46hg4
+    path: packages/patching/generated/patches/typescript@5.2.2.patch
+
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2(patch_hash=6ijiephe5hsfj6offzfxf46hg4)
 
   packages/patching:
     dependencies:
@@ -229,6 +238,13 @@ packages:
     dependencies:
       rimraf: 3.0.2
     dev: false
+
+  /typescript@5.2.2(patch_hash=6ijiephe5hsfj6offzfxf46hg4):
+    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: true
+    patched: true
 
   /wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}

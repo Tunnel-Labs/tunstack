@@ -1,3 +1,11 @@
 {
-	"name": "@/monorepo"
+	"name": "@/monorepo",
+	"devDependencies": {
+		"typescript": "^5.2.2"
+	},
+	"pnpm": {
+		"patchedDependencies": {
+			"typescript@5.2.2": "packages/patching/generated/patches/typescript@5.2.2.patch"
+		}
+	}
 }
