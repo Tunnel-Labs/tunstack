@@ -1,0 +1,44 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"lib": ["ES2022", "DOM", "DOM.Iterable"],
+		"composite": true,
+		"disableSizeLimit": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"declaration": true,
+		"pretty": true,
+		"newLine": "lf",
+		"stripInternal": true,
+		"strict": true,
+		"allowJs": true,
+		"strictPropertyInitialization": true,
+		"noUncheckedIndexedAccess": true,
+		"noPropertyAccessFromIndexSignature": false,
+		"useDefineForClassFields": true,
+		"allowArbitraryExtensions": true,
+		"allowImportingTsExtensions": true,
+		"incremental": true,
+		"useUnknownInCatchVariables": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"emitDeclarationOnly": true,
+		"experimentalDecorators": true,
+		"resolveJsonModule": true,
+		"paths": {
+			"glob:*": ["./<dirname>/*/__virtual__:matches.ts"],
+			"glob[files]:*": ["./<dirname>/*/__virtual__:files.ts"],
+			"glob[filepaths]:*": ["./<dirname>/*/__virtual__:filepaths.ts"],
+			"~/*": ["./<packagePath>/src/*"]
+		}
+	},
+	"exclude": [
+		"**/dist",
+		"**/dist-*"
+	],
+	"include": [
+		"./packages/patching/**/*"
+	]
+}
